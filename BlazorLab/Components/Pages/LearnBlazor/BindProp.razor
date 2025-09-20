@@ -7,9 +7,11 @@
 name: @product.Name
 <br />
 IsActive: @product.isActive
-
-
-
+<br />
+Price: @product.Price
+<br/>
+Input Price:
+<input type="number" @bind="product.Price" @bind:event="oninput" />
 
 
 
@@ -19,7 +21,8 @@ IsActive: @product.isActive
 	{
 		Id = 1,
 		Name = "Samsung",
-		isActive = true
+		isActive = true,
+		Price = 45000
 	};
 
 }
