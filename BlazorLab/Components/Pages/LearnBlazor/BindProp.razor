@@ -10,8 +10,17 @@ IsActive: @product.isActive
 <br />
 Price: @product.Price
 <br/>
+
+This Product is: @(product.isActive ? "Active" : "Inactive")
+<br />
+
 Input Price:
 <input type="number" @bind="product.Price" @bind:event="oninput" />
+
+<br />
+
+Is Active:
+<input type="checkbox" @bind="product.isActive"/>
 
 
 
@@ -21,8 +30,8 @@ Input Price:
 	{
 		Id = 1,
 		Name = "Samsung",
-		isActive = true,
-		Price = 45000
+		isActive = false,
+		Price = 0
 	};
 
 }
