@@ -1,7 +1,25 @@
 ﻿@page "/learn-blazor/bind-prop"
 
-<h3>BindProp</h3>
+@using BlazorLab.Models
+
+<h3>Product - Data Binding</h3>
+
+name: @product.Name
+<br />
+IsActive: @product.isActive
+
+
+
+
+
 
 @code {
+
+	Product product = new Product
+	{
+		Id = 1,
+		Name = "Samsung",
+		isActive = true
+	};
 
 }
