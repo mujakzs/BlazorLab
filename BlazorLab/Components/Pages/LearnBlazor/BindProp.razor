@@ -1,6 +1,7 @@
 ﻿@page "/learn-blazor/bind-prop"
+@using System.Collections.Generic
 
-@using BlazorLab.Models
+
 
 <h3>Product - Data Binding</h3>
 
@@ -20,18 +21,45 @@ Input Price:
 <br />
 
 Is Active:
-<input type="checkbox" @bind="product.isActive"/>
+<input type="checkbox" @bind="product.isActive"/><br /><br />
+
+Product Properties:
+
+<select @bind="selectedProp">
+	@foreach (var prop in product.Props)
+	{
+		<option value="@prop.key">@prop.key</option>
+	}
+</select>
+
+<br />
+Selected Prop: @selectedProp
+<br />
+@if (!string.IsNullOrEmpty(selectedProp))
+{
+	<p>Selected Value: @product.Props.FirstOrDefault(u => u.key==selectedProp).value</p>
+}
+
 
 
 
 @code {
+
+	private string selectedProp = "";
 
 	Product product = new Product
 	{
 		Id = 1,
 		Name = "Samsung",
 		isActive = false,
-		Price = 0
+		Price = 0,
+		Props = new List<Product_Prop>()
+		{
+			new Product_Prop { Id=1, key="Color", value="Black" },
+			new Product_Prop { Id=2, key="Memory", value="128GB" },
+			new Product_Prop { Id=3, key="RAM", value="8GB" },
+			new Product_Prop { Id=4, key="Camera", value="50MP" },
+		}
 	};
 
 }
