@@ -1,0 +1,36 @@
+﻿@page "/learnblazor/employeeinfo"
+
+<div class="row">
+	<div class="col border p-3">
+		<h3 class="text-primary">Employee Info</h3>
+		<hr />
+		<p>Name:@emp.Name </p>
+		<p>Team: @emp.Team</p>
+		<p>Strength: @emp.Strength</p>
+	</div>
+	<div class="col border p-3">
+		<h3 class="text-primary">Input Details</h3>
+		<hr />
+		<p>
+			input name: <input type="text" @bind="emp.Name" @bind:event="oninput" />
+		</p>
+		<p>
+			input team: <input type="text" @bind="emp.Team" @bind:event="oninput" />
+		</p>
+		<p>
+			input strength: <input type="text" @bind="emp.Strength" @bind:event="oninput" />
+		</p>
+	</div>
+	
+</div>
+
+@code {
+
+	Employee_prop emp = new Employee_prop
+	{
+		Id = 1,
+		Name = "",
+		Team = "",
+		Strength = ""
+	};
+}
