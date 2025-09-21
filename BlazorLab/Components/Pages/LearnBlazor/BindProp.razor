@@ -38,6 +38,36 @@
 			<p>Selected Value: @product.Props.FirstOrDefault(u => u.key == selectedProp).value</p>
 		}
 	</div>
+	<br />
+	<hr />
+	<div class="col p-4">
+		<h2 class="text-success">Product Table</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td>Product Name</td>
+					<td>Price</td>
+					<td>Is Active</td>
+				</tr>
+			</thead
+			<tbody>
+				@foreach (var p in productList)
+				{
+					<tr>
+						<td>
+							<input type="text" @bind="p.Name" />
+						</td>
+						<td>
+							<input type="number" @bind="p.Price" @bind:event="oninput" />
+						</td>
+						<td>
+							<input type="checkbox" @bind="p.isActive" />
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
 </div>
 
 
@@ -62,4 +92,54 @@
 		}
 	};
 
+	List<Product> productList = new List<Product>();
+
+	protected override void OnInitialized()
+	{
+
+		productList.Add(new()
+		{
+			Id = 1,
+			Name = "Iphone",
+			isActive = true,
+			Price = 10.0,
+			Props = new List<Product_Prop>()
+			{
+				new Product_Prop { Id=1, key="Color", value="Black" },
+				new Product_Prop { Id=2, key="Memory", value="128GB" },
+				new Product_Prop { Id=3, key="RAM", value="8GB" },
+				new Product_Prop { Id=4, key="Camera", value="50MP" },
+			}
+		});
+
+		productList.Add(new()
+		{
+			Id = 2,
+			Name = "Samsung",
+			isActive = false,
+			Price = 20.0,
+			Props = new List<Product_Prop>()
+			{
+				new Product_Prop { Id=1, key="Color", value="White" },
+				new Product_Prop { Id=2, key="Memory", value="256GB" },
+				new Product_Prop { Id=3, key="RAM", value="12GB" },
+				new Product_Prop { Id=4, key="Camera", value="108MP" },
+			}
+		});
+
+		productList.Add(new()
+		{
+			Id = 3,
+			Name = "Xiaomi",
+			isActive = true,
+			Price = 30.0,
+			Props = new List<Product_Prop>()
+			{
+				new Product_Prop { Id=1, key="Color", value="Blue" },
+				new Product_Prop { Id=2, key="Memory", value="512GB" },
+				new Product_Prop { Id=3, key="RAM", value="16GB" },
+				new Product_Prop { Id=4, key="Camera", value="200MP" },
+			}
+		});
+	}
 }
