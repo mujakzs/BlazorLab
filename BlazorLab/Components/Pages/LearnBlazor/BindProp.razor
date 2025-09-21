@@ -2,43 +2,43 @@
 @using System.Collections.Generic
 
 
+<div class="row">
+	<div class="col-6 border p-3">
 
-<h3>Product - Data Binding</h3>
+		<h3 class="text-primary">Product - Playground</h3>
+		<hr />
 
-name: @product.Name
-<br />
-IsActive: @product.isActive
-<br />
-Price: @product.Price
-<br/>
+		Input Price: <input type="number" @bind="product.Price" @bind:event="oninput" /> <br />
 
-This Product is: @(product.isActive ? "Active" : "Inactive")
-<br />
+		Is Active: <input type="checkbox" @bind="product.isActive" /><br /><br />
 
-Input Price:
-<input type="number" @bind="product.Price" @bind:event="oninput" />
+		Product Properties:
+			<select @bind="selectedProp">
+				@foreach (var prop in product.Props)
+				{
+					<option value="@prop.key">@prop.key</option>
+				}
+			</select>
 
-<br />
+	</div>
 
-Is Active:
-<input type="checkbox" @bind="product.isActive"/><br /><br />
+	<div class="col-6 border p-3">
 
-Product Properties:
+		<h3 class="text-primary">Product - Summary</h3>
+		<hr />
 
-<select @bind="selectedProp">
-	@foreach (var prop in product.Props)
-	{
-		<option value="@prop.key">@prop.key</option>
-	}
-</select>
-
-<br />
-Selected Prop: @selectedProp
-<br />
-@if (!string.IsNullOrEmpty(selectedProp))
-{
-	<p>Selected Value: @product.Props.FirstOrDefault(u => u.key==selectedProp).value</p>
-}
+		name: @product.Name <br />
+		IsActive: @product.isActive <br />
+		Price: @product.Price <br />
+		This Product is: @(product.isActive ? "Active" : "Inactive")<br /><br />
+		Selected Prop: @selectedProp
+		<br />
+		@if (!string.IsNullOrEmpty(selectedProp))
+		{
+			<p>Selected Value: @product.Props.FirstOrDefault(u => u.key == selectedProp).value</p>
+		}
+	</div>
+</div>
 
 
 
