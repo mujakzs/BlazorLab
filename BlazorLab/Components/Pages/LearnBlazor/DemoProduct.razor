@@ -1,0 +1,66 @@
+﻿@page "/learnblazor/demoproduct"
+
+<h3 class="text-primary">DemoProduct</h3>
+<div>
+	<div>
+		@foreach (var prod in productList)
+		{
+			<div>
+				<h4>Product ID - @prod.Id</h4>
+					Name - @prod.Name <br />
+					show Properties :
+					<input type="checkbox" @bind="prod.isActive"/>
+
+				@if (prod.isActive)
+				{
+					@foreach (var p in prod.Props)
+					{
+						<p>@p.key - @p.value</p>
+					}
+
+				}
+			</div>
+		}
+	</div>
+</div>
+
+@code {
+
+	List<Product> productList = new List<Product>();
+
+	protected override void OnInitialized()
+	{
+
+		productList.Add(new()
+		{
+			Id = 1,
+			Name = "Iphone",
+			isActive = true,
+			Price = 10.0,
+			Props = new List<Product_Prop>()
+			{
+				new Product_Prop { Id=1, key="Color", value="Black" },
+				new Product_Prop { Id=2, key="Memory", value="128GB" },
+				new Product_Prop { Id=3, key="RAM", value="8GB" },
+				new Product_Prop { Id=4, key="Camera", value="50MP" },
+			}
+		});
+
+		productList.Add(new()
+		{
+			Id = 2,
+			Name = "Samsung",
+			isActive = false,
+			Price = 20.0,
+			Props = new List<Product_Prop>()
+			{
+				new Product_Prop { Id=1, key="Color", value="White" },
+				new Product_Prop { Id=2, key="Memory", value="256GB" },
+				new Product_Prop { Id=3, key="RAM", value="12GB" },
+				new Product_Prop { Id=4, key="Camera", value="108MP" },
+			}
+		});
+
+	}
+
+}
