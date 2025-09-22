@@ -68,6 +68,18 @@
 			</tbody>
 		</table>
 	</div>
+	<div>
+		<h2>Product Summary</h2>
+		@foreach (var p in productList)
+		{
+			<p>
+				Name: @p.Name <br />
+				Price: @p.Price <br />
+				IsActive: @(p.isActive ? "Active" : "Inactive")
+			</p>
+			<hr />
+		}
+	</div>
 </div>
 
 
