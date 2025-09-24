@@ -1,12 +1,12 @@
 ﻿@page "/learnblazor/demoproduct"
 
 <h3 class="text-primary">DemoProduct</h3>
-<div>
-	<div>
+<div class=" p-2 mt-2">
+	<div class="row">
 		@foreach (var prod in productList)
 		{
-			<div>
-				<h4>Product ID - @prod.Id</h4>
+			<div class="bg-light border col-6">
+				<h4 class="text-secondary">Product ID - @prod.Id</h4>
 					Name - @prod.Name <br />
 					show Properties :
 					<input type="checkbox" @bind="prod.isActive"/>
@@ -19,6 +19,8 @@
 					}
 
 				}
+				<br />
+				<input type="button" class="btn btn-danger" style="width:100px" value="Delete"/>
 			</div>
 		}
 	</div>
