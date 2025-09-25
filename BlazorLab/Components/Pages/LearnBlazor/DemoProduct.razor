@@ -20,7 +20,12 @@
 
 				}
 				<br />
-				<input type="button" class="btn btn-danger" style="width:100px" value="Delete"/>
+				<input 
+					type="button" 
+					class="btn btn-danger" 
+					style="width:100px" 
+					value="Delete" 
+					@onclick="() => Remove(prod.Id)" />  <!--"When the button (or element) is clicked, call the method Remove and pass prod.Id as a parameter -->
 			</div>
 		}
 	</div>
@@ -28,20 +33,19 @@
 
 	<div>
 
-		<input type="button" class="btn btn-success" style="width:100px" value="Counter" @onclick="IncrementCount"/>
-		count = @count
+		<input type="button"
+		 class="btn btn-success"
+		 style="width:100px"
+		 value="Counter"
+		 @onclick="()=>IncrementCount(2)"/>
+		Count = @Count
 		
 	</div>
 </div>
 
 @code {
 
-	public int count {get; set;} = 0;
-
-	public void IncrementCount()
-	{
-		count++;
-	}
+	public int Count {get; set;} = 0;
 
 	List<Product> productList = new List<Product>();
 
@@ -78,6 +82,20 @@
 			}
 		});
 
+	}
+
+	public void IncrementCount(int counter)
+	{
+		Count += counter;
+	}
+
+	public void Remove(int prodId)
+	{
+		var prod = productList.FirstOrDefault(p => p.Id == prodId); <!-- From the list productList, find the first product whose Id equals prodId.If none is found, return null." -->
+		if (prod != null)
+		{
+			productList.Remove(prod);
+		}
 	}
 
 }
