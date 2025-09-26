@@ -1,5 +1,6 @@
 ﻿@page "/learn-blazor/bind-prop"
 @using System.Collections.Generic
+@using BlazorLab.Components.Shared
 
 
 <div class="row">
@@ -82,6 +83,13 @@
 	</div>
 </div>
 
+<div>
+	<h2>Product table</h2>
+	@foreach (var p in productList)
+	{
+		<ProductCard TProduct="Product" Product="p" />
+	}
+</div>
 
 
 
