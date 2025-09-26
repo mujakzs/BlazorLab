@@ -1,0 +1,39 @@
+﻿@using BlazorLab.Models
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Active</th>
+            <th>Properties</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Products != null)
+        {
+            @foreach (var product in Products)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@(product.isActive ? "Yes" : "No")</td>
+                    <td>
+                        <ul>
+                            @foreach (var prop in product.Props)
+                            {
+                                <li>@prop.key: @prop.value</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+
+    [Parameter]
+    public IEnumerable<Product> Products { get; set; }
+}
