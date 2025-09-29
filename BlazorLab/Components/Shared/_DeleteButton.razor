@@ -1,0 +1,17 @@
+﻿@using BlazorLab.Components.Pages.LearnBlazor
+
+<input type="button"
+	   class="btn btn-danger"
+	   style="width:100px"
+	   value="Delete - @ProductId"
+	   onclick="() => OnDelete.InvokeAsync(ProductId)"/>
+
+	   <!--@onclick="() => Remove(prod.Id)" /> -->  <!--"When the button (or element) is clicked, call the method Remove and pass prod.Id as a parameter -->
+
+@code {
+	[Parameter]
+	public int ProductId { get; set; }
+
+	[Parameter]
+    public EventCallback<int> OnDelete { get; set; }
+}
