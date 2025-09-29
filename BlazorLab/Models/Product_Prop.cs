@@ -1,9 +1,8 @@
-﻿namespace BlazorLab.Models
+﻿namespace BlazorLab.Models;
+
+public class Product_Prop
 {
-    public class Product_Prop
-    {
-        public int Id { get; set; }
-        public string key { get; set; }
-        public string value { get; set; }
-    }
+    public int Id { get; set; }
+    public string key { get; set; }
+    public string value { get; set; }
 }

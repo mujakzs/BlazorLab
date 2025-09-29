@@ -1,0 +1,99 @@
+﻿@using BlazorLab.Components.Pages.LearnBlazor
+@using BlazorLab.Models
+@using System.Collections.Generic
+
+<div class="row">
+	<div class="col-6 border p-3">
+
+		<h3 class="text-primary">Product - Playground</h3>
+		<hr />
+
+		Input Price: <input type="number" @bind="Product.Price" @bind:event="oninput" /> <br />
+
+		Is Active: <input type="checkbox" @bind="Product.isActive" /><br /><br />
+
+		Product Properties:
+			<select @bind="selectedProp">
+				@foreach (var prop in Product.Props)
+				{
+					<option value="@prop.key">@prop.key</option>
+				}
+			</select>
+
+	</div>
+
+	<div class="col-6 border p-3">
+
+		<h3 class="text-primary">Product - Summary</h3>
+		<hr />
+
+		name: @Product.Name <br />
+		IsActive: @Product.isActive <br />
+		Price: @Product.Price <br />
+		This Product is: @(Product.isActive ? "Active" : "Inactive")<br /><br />
+		Selected Prop: @selectedProp
+		<br />
+		@if (!string.IsNullOrEmpty(selectedProp))
+		{
+			<p>Selected Value: @Product.Props.FirstOrDefault(u => u.key == selectedProp).value</p>
+		}
+	</div>
+	<br />
+	<hr />
+	<div class="col p-4">
+		<h2 class="text-success">Product Table</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td>Product Name</td>
+					<td>Price</td>
+					<td>Is Active</td>
+				</tr>
+			</thead>
+			<tbody>
+				@if (ProductList != null)
+				{
+					@foreach (var p in ProductList)
+					{
+						<tr>
+							<td>
+								<input type="text" @bind="p.Name" />
+							</td>
+							<td>
+								<input type="number" @bind="p.Price" @bind:event="oninput" />
+							</td>
+							<td>
+								<input type="checkbox" @bind="p.isActive" />
+							</td>
+						</tr>
+					}
+				}
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<h2>Product Summary</h2>
+		@if (ProductList != null)
+		{
+			@foreach (var p in ProductList)
+			{
+				<p>
+					Name: @p.Name <br />
+					Price: @p.Price <br />
+					IsActive: @(p.isActive ? "Active" : "Inactive")
+				</p>
+				<hr />
+			}
+		}
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public Product? Product { get; set; }
+
+	[Parameter]
+	public List<Product>? ProductList { get; set; }
+
+	private string selectedProp = "";
+}
