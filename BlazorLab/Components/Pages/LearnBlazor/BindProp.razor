@@ -2,100 +2,28 @@
 @using System.Collections.Generic
 @using BlazorLab.Components.Shared
 
-
-<div class="row">
-	<div class="col-6 border p-3">
-
-		<h3 class="text-primary">Product - Playground</h3>
-		<hr />
-
-		Input Price: <input type="number" @bind="product.Price" @bind:event="oninput" /> <br />
-
-		Is Active: <input type="checkbox" @bind="product.isActive" /><br /><br />
-
-		Product Properties:
-			<select @bind="selectedProp">
-				@foreach (var prop in product.Props)
-				{
-					<option value="@prop.key">@prop.key</option>
-				}
-			</select>
-
-	</div>
-
-	<div class="col-6 border p-3">
-
-		<h3 class="text-primary">Product - Summary</h3>
-		<hr />
-
-		name: @product.Name <br />
-		IsActive: @product.isActive <br />
-		Price: @product.Price <br />
-		This Product is: @(product.isActive ? "Active" : "Inactive")<br /><br />
-		Selected Prop: @selectedProp
-		<br />
-		@if (!string.IsNullOrEmpty(selectedProp))
-		{
-			<p>Selected Value: @product.Props.FirstOrDefault(u => u.key == selectedProp).value</p>
-		}
-	</div>
-	<br />
-	<hr />
-	<div class="col p-4">
-		<h2 class="text-success">Product Table</h2>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<td>Product Name</td>
-					<td>Price</td>
-					<td>Is Active</td>
-				</tr>
-			</thead
-			<tbody>
-				@foreach (var p in productList)
-				{
-					<tr>
-						<td>
-							<input type="text" @bind="p.Name" />
-						</td>
-						<td>
-							<input type="number" @bind="p.Price" @bind:event="oninput" />
-						</td>
-						<td>
-							<input type="checkbox" @bind="p.isActive" />
-						</td>
-					</tr>
-				}
-			</tbody>
-		</table>
-	</div>
-	<div>
-		<h2>Product Summary</h2>
-		@foreach (var p in productList)
-		{
-			<p>
-				Name: @p.Name <br />
-				Price: @p.Price <br />
-				IsActive: @(p.isActive ? "Active" : "Inactive")
-			</p>
-			<hr />
-		}
-	</div>
+<div class="pt-5">
+	<h2>Product Playground</h2>
+	<ProductPlayground Product="product" ProductList="productList" />
 </div>
 
-<div class="pt-4">
-	<h2>Product table</h2>
+<div class="pt-5">
+	<h2>Product Card</h2>
 	@foreach (var p in productList)
 	{
 		<ProductCard TProduct="Product" Product="p" />
 	}
 </div>
 
+<div class="pt-5">
+	<h2>Product Table</h2>
+	<ProductTable Product="productList" />
+</div>
+
 
 
 @code {
 
-	private string selectedProp = "";
 
 	Product product = new Product
 	{

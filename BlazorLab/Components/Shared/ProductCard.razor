@@ -1,20 +1,22 @@
 ﻿@using BlazorLab.Components.Pages.LearnBlazor
 @typeparam TProduct
 
-<div class="card m-2 p-2">
-    <h5>@Product.Name</h5>
-    <div>Price: @Product.Price</div>
-    <div>Status: @(Product.isActive ? "Active": "Inactive")</div>
-    <ul>
-        @foreach (var prop in Product.Props)
-        {
-            <li>@prop.key : @prop.value</li>
-        }
-    </ul>
-</div>
+@if (Product != null)
+{
+    <div class="card m-2 p-2">
+        <h5>@Product.Name</h5>
+        <div>Price: @Product.Price</div>
+        <div>Status: @(Product.isActive ? "Active": "Inactive")</div>
+        <ul>
+            @foreach (var prop in Product.Props)
+            {
+                <li>@prop.key : @prop.value</li>
+            }
+        </ul>
+    </div>
+}
 
 @code {
     [Parameter]
-    public Product Product { get; set; }
-
+    public Product? Product { get; set; }
 }
