@@ -2,50 +2,22 @@
 @using BlazorLab.Components.Shared
 
 <h3 class="text-primary">DemoProduct</h3>
+<p>Favorite Count: @favoriteCount</p>
 <div class=" p-2 mt-2">
 	<div class="row">
 		@foreach (var prod in productList)
 		{
-			<div class="bg-light border col-6">
-				<h4 class="text-secondary">Product ID - @prod.Id</h4>
-					Name - @prod.Name <br />
-					show Properties :
-					<input type="checkbox" @bind="prod.isActive"/>
-
-				@if (prod.isActive)
-				{
-					@foreach (var p in prod.Props)
-					{
-						<p>@p.key - @p.value</p>
-					}
-
-                    
-				}
-				<br />
-				<_DeleteButton ProductId="@prod.Id" OnDelete="Remove" />
-				
-			</div>
+            <_IndividualProduct 
+				Prod="@prod" 
+				OnFavoriteChanged="FavoriteCount"
+				Remove = "Remove"/>
 		}
-	</div>
-	<br />
-	<br />
-	<br />
-
-	<div>
-
-		<input type="button"
-		 class="btn btn-success"
-		 style="width:100px"
-		 value="Counter"
-		 @onclick="()=>IncrementCount(2)"/>
-		Count = @Count
-		
 	</div>
 </div>
 
 @code {
 
-	public int Count {get; set;} = 0;
+	public int favoriteCount { get; set; } = 0;
 
 	List<Product> productList = new List<Product>();
 
@@ -84,11 +56,6 @@
 
 	}
 
-	public void IncrementCount(int counter)
-	{
-		Count += counter;
-	}
-
 	public void Remove(int prodId)
 	{
 		var prod = productList.FirstOrDefault(p => p.Id == prodId); <!-- From the list productList, find the first product whose Id equals prodId.If none is found, return null." -->
@@ -96,6 +63,18 @@
 		{
 			productList.Remove(prod);
 		}
+	}
+
+	public void FavoriteCount(bool isSelected)
+	{
+		if (isSelected)
+		{
+			favoriteCount++;
+		}
+		else
+		{
+			favoriteCount--;
+        }
 	}
 
 }
