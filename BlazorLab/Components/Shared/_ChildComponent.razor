@@ -1,0 +1,21 @@
+﻿<div>
+	<h3 class="alert alert-info">@Title</h3>
+</div>
+
+@if (ChildContent != null)
+{
+	<div class="alert alert-success">
+		@ChildContent
+	</div>
+}
+
+
+
+@code {
+
+	[Parameter]
+	public string Title { get; set; }
+
+	[Parameter]
+	public RenderFragment ChildContent { get; set; }
+}
