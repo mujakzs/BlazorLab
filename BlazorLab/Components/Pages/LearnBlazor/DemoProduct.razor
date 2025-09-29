@@ -2,7 +2,10 @@
 @using BlazorLab.Components.Shared
 
 <h3 class="text-primary">DemoProduct</h3>
+
 <p>Favorite Count: @favoriteCount</p>
+<p>Selected Product: @selectedProductName</p>
+
 <div class=" p-2 mt-2">
 	<div class="row">
 		@foreach (var prod in productList)
@@ -10,7 +13,8 @@
             <_IndividualProduct 
 				Prod="@prod" 
 				OnFavoriteChanged="FavoriteCount"
-				Remove = "Remove"/>
+				Remove = "Remove"
+				OnSelected="SelectProduct"/>
 		}
 	</div>
 </div>
@@ -18,6 +22,7 @@
 @code {
 
 	public int favoriteCount { get; set; } = 0;
+    public string selectedProductName { get; set; } = string.Empty;
 
 	List<Product> productList = new List<Product>();
 
@@ -43,7 +48,7 @@
 		{
 			Id = 2,
 			Name = "Samsung",
-			isActive = false,
+			isActive = true,
 			Price = 20.0,
 			Props = new List<Product_Prop>()
 			{
@@ -76,5 +81,10 @@
 			favoriteCount--;
         }
 	}
+
+	public void SelectProduct(string prodName)
+	{
+		selectedProductName = prodName;
+    }
 
 }
