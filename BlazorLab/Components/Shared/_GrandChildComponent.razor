@@ -3,8 +3,13 @@
 <p>There is a message for grand child - @GrandChildMessage</p>
 
 @code {
-
-
-    [Parameter]
+    [CascadingParameter]
     public string GrandChildMessage { get; set; }
+
+    [CascadingParameter(Name = "TitleName")]
+    public string TitleFromParent { get; set; }
 }
+
+<div>
+    <h4 class="alert alert-dark">Cascading Title: @TitleFromParent</h4>
+</div>

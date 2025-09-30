@@ -28,9 +28,10 @@
 <button class="btn-primary" @onclick="OnButtonClick">Show Message</button>
 <br />
 
-<_GrandChildComponent GrandChildMessage="@GrandChildMessage">
+<CascadingValue Value="Title" Name="TitleName">
+	<_GrandChildComponent/>
+</CascadingValue>
 
-</_GrandChildComponent>
 
 
 
