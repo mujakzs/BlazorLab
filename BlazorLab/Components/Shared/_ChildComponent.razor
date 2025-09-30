@@ -7,6 +7,8 @@
 	<div class="alert alert-success">
 		@ChildContent
 	</div>
+
+	<button class="btn-primary" @onclick="OnButtonClick">Show Message</button><br />
 }
 
 
@@ -18,4 +20,9 @@
 
 	[Parameter]
 	public RenderFragment ChildContent { get; set; }
+
+	[Parameter]
+	public EventCallback OnButtonClick { get; set; }
+
+
 }

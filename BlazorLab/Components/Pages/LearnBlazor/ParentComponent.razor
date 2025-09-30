@@ -4,13 +4,22 @@
 <h3>ParentComponent</h3>
 
 
-<_ChildComponent Title="I Love Azmen Tamano my wife">
+<_ChildComponent OnButtonClick="ShowMessage" Title="I Love Azmen Tamano my wife">
 	 This some additional content passed from the ParentComponent.
 </_ChildComponent>
+
+<p>@message</p>
 
 <_ChildComponent Title="I Love Azmen Tamano my wife">
 </_ChildComponent>
 
 @code {
+
+	public string message = "";
+
+	public void ShowMessage()
+	{
+        message = "Button clicked in ChildComponent";
+	}
 
 }
