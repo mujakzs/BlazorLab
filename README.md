@@ -28,6 +28,8 @@ progress → checkpoint for learning progress
 
 ## 📌 Timeline
 
+➡️ [Progress Tracker Issue] ([https://github.com/your-username/your-repo/issues/1](https://github.com/mujakzs/BlazorLab/issues/12))
+
 ### ⭐ Section 1 – Welcome & Getting Started
 - Introduction to the course  
 - Overview of what we will cover  

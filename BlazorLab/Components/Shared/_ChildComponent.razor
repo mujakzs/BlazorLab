@@ -2,20 +2,59 @@
 	<h3 class="alert alert-info">@Title</h3>
 </div>
 
+
+@if (Head != null)
+{
+	<div class="alert alert-warning">
+		@Head
+	</div>
+}
+
 @if (ChildContent != null)
 {
 	<div class="alert alert-success">
 		@ChildContent
 	</div>
+
 }
+
+@if (ChildSomeContent != null)
+{
+	<div class="alert alert-success">
+        @ChildSomeContent
+	</div>
+}
+
+<button class="btn-primary" @onclick="OnButtonClick">Show Message</button>
+<br />
+
+<_GrandChildComponent GrandChildMessage="@GrandChildMessage">
+
+</_GrandChildComponent>
+
 
 
 
 @code {
+
+
 
 	[Parameter]
 	public string Title { get; set; }
 
 	[Parameter]
 	public RenderFragment ChildContent { get; set; }
+
+	[Parameter]
+	public RenderFragment ChildSomeContent { get; set; }
+
+	[Parameter]
+	public RenderFragment Head { get; set; }
+
+	[Parameter]
+	public EventCallback OnButtonClick { get; set; }
+
+
+	[Parameter]
+	public string GrandChildMessage { get; set; }
 }
