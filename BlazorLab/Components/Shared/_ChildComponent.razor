@@ -2,14 +2,32 @@
 	<h3 class="alert alert-info">@Title</h3>
 </div>
 
+
+@if (Head != null)
+{
+	<div class="alert alert-warning">
+		@Head
+	</div>
+}
+
 @if (ChildContent != null)
 {
 	<div class="alert alert-success">
 		@ChildContent
 	</div>
 
-	<button class="btn-primary" @onclick="OnButtonClick">Show Message</button><br />
 }
+
+@if (ChildSomeContent != null)
+{
+	<div class="alert alert-success">
+        @ChildSomeContent
+	</div>
+}
+
+<button class="btn-primary" @onclick="OnButtonClick">Show Message</button>
+<br />
+
 
 
 
@@ -20,6 +38,12 @@
 
 	[Parameter]
 	public RenderFragment ChildContent { get; set; }
+
+	[Parameter]
+	public RenderFragment ChildSomeContent { get; set; }
+
+	[Parameter]
+	public RenderFragment Head { get; set; }
 
 	[Parameter]
 	public EventCallback OnButtonClick { get; set; }
