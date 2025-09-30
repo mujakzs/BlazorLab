@@ -28,10 +28,16 @@
 <button class="btn-primary" @onclick="OnButtonClick">Show Message</button>
 <br />
 
+<_GrandChildComponent GrandChildMessage="@GrandChildMessage">
+
+</_GrandChildComponent>
+
 
 
 
 @code {
+
+
 
 	[Parameter]
 	public string Title { get; set; }
@@ -49,4 +55,6 @@
 	public EventCallback OnButtonClick { get; set; }
 
 
+	[Parameter]
+	public string GrandChildMessage { get; set; }
 }
