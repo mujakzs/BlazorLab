@@ -3,24 +3,27 @@
 
 <h3>ParentComponent</h3>
 
+<CascadingValue Value="@MessageForGrandChild">
+	<_ChildComponent OnButtonClick="ShowMessage"
+					 Title="Hello Team"
+					 GrandchildMessage="I love my GrandChild">
+		<Head>
+			<h1>Header</h1>
+		</Head>
+		<ChildContent>
+			<p>This is child content from ParentComponent</p>
+			<br />
 
-<_ChildComponent OnButtonClick="ShowMessage" 
-	Title="Hello Team"
-	GrandchildMessage ="I love my GrandChild">
-	<Head>
-		<h1>Header</h1>
-	</Head>
-	<ChildContent>
-        <p>This is child content from ParentComponent</p>
-		<br />
+		</ChildContent>
 
-	</ChildContent>
+		<ChildSomeContent>
+			<p>This is some other child content from ParentComponent</p>
+		</ChildSomeContent>
 
-	<ChildSomeContent>
-        <p>This is some other child content from ParentComponent</p>
-	</ChildSomeContent>
+	</_ChildComponent>
+</CascadingValue>
 
-</_ChildComponent>
+
 
 <p>@message</p>
 
@@ -28,6 +31,7 @@
 
 @code {
 
+	private string MessageForGrandChild = "Message from ParentComponent to GrandChildComponent";
 	public string message = "";
 
 	public void ShowMessage()
